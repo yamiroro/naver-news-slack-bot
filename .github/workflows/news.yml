@@ -2,25 +2,17 @@ name: Send Naver News to Slack
 
 on:
   schedule:
-    - cron: "*/1 * * * *"     # 매 1분 (UTC 기준)
-  workflow_dispatch:          # 수동 실행도 가능하게
-
+    - cron: "*/1 * * * *"   # 1 분마다
 jobs:
   run:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      - name: Install dependencies
-        run: pip install requests beautifulsoup4
-
-      - name: Run script
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      - uses: actions/setup-python@v4
+        with: {python-version: "3.10"}
+      - run: pip install requests
+      - env:
+          NAVER_CLIENT_ID:     ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+          SLACK_WEBHOOK_URL:   ${{ secrets.SLACK_WEBHOOK_URL }}
         run: python news_to_slack.py
