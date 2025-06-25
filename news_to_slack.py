@@ -2,8 +2,7 @@ import os, datetime, requests
 from bs4 import BeautifulSoup
 
 NAVER_URL = (
-    "https://search.naver.com/search.naver"
-    "?where=news&sm=tab_opt&sort=1&query=%EC%86%8D%EB%B3%B4+%EC%9D%B4%EB%9E%80"
+    "https://search.naver.com/search.naver?where=news&sm=tab_opt&sort=1&query=%EC%86%8D%EB%B3%B4+%EC%9D%B4%EB%9E%80"
 )
 
 HEADERS = {
